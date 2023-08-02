@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %} Profile {% endblock %} {% block add_blogs_active %} active {% endblock add_blogs_active %} {% block css %} {% endblock %} {% block body %}
+<div class="container mt-2">
+    <div class="head bg-info">
+        <header class="text-capitalize text-center color-light">
+            <h2>Add post</h2>
+        </header>
+    </div>
+    <form class="form-control" action="/add_blogs/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
+        <div class="container align-center ">
+            {{ form.as_p }}
+            <button class="btn btn-block btn-primary">Add Post</button>
+        </div>
+    </form>
+</div>
+{% endblock %} {% block js %}
+<script>
+    { %
+        if alert %
+    }
+    alert('Your Blog is added successfully.');
+    document.location = '/'; { % endif %
+    }
+</script>
+{% endblock %}
