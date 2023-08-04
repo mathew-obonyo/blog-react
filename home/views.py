@@ -6,7 +6,15 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, BlogPostForm
 from django.views.generic import UpdateView
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'change_password.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy('users-home')
 
 def blogs(request):
     posts = BlogPost.objects.all()
@@ -66,6 +74,7 @@ def user_profile(request, myid):
 
 def Profile(request):
     return render(request, "profile.html")
+
 
 def edit_profile(request):
     try:

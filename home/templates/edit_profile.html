@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title %} Edit Page {% endblock %} {% block css %} {% endblock %} {% block body %}
-<div class="container">
+<div class="container mb-3">
     <form class="form control" action="/edit_profile/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
         <div class="container mt-3">
             {{ form.as_p }}
@@ -12,8 +12,10 @@
     { %
         if alert %
     }
-    alert('Your Profile has been updated successfully.');
-    document.location = '/profile/'; { % endif %
+    if (alert) {
+        alert('Your Profile has been updated successfully.');
+        document.location = '/profile/';
+    } { % endif %
     }
 </script>
 {% endblock %}

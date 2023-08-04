@@ -10,12 +10,20 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     <title> {% block title %} {% endblock %} </title>
 
     <style>
         {
             % block css %
+        }
+        
+        .avatar {
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
         }
         
         {
@@ -39,7 +47,7 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link {% block add_blogs_active %} {% endblock add_blogs_active %}" href="/add_blogs/">Add Blogs</a>
+
                         </li>
 
                         <li class="nav-item">
@@ -65,16 +73,102 @@
                     <input class="form-control me-2" type="search" placeholder="Search" name="searched" id="searched" aria-label="Search">
                     <button href="/search/" class="btn btn-outline-secondary" type="submit">Search</button>
                 </form>
+                {% if user.profile.image %}
+                <img src="{{user.profile.image.url}}" alt="" class="avatar m-1" "> {% endif %}
             </div>
         </div>
     </nav>
     {% block body %} {% endblock %}
 
+    <footer class="bg-secondary ">
+        <div class="container ">
+            <footer class="kilimanjaro_area ">
+                <!-- Top Footer Area Start -->
+                <div class="foo_top_header_one section_padding_100_70 ">
+                    <div class="container ">
+                        <div class="row ">
+                            <div class="col-12 col-md-6 col-lg-3 ">
+                                <div class="kilimanjaro_part ">
+                                    <h5>About Us</h5>
+                                    <p>It includes rich features & contents. It's designed & developed based on One Page/ Multi-page Layout,blog themes,world press themes and blogspot. You can use any layout from any demo anywhere.</p>
+                                    <p>webblogoverflow is completely creative, clean & 100% responsive website. Put your business into next level with Webublogoverflow.</p>
+                                </div>
+                                <div class="kilimanjaro_part m-top-15 ">
+                                    <h5>Social Links</h5>
+                                    <ul class="kilimanjaro_social_links ">
+                                        <li><a href="# "><i class="fa fa-facebook " aria-hidden="true "></i> Facebook</a></li>
+                                        <li><a href="# "><i class="fa fa-twitter " aria-hidden="true "></i> Twitter</a></li>
+                                        <li><a href="# "><i class="fa fa-pinterest " aria-hidden="true "></i> Pinterest</a></li>
+                                        <li><a href="# "><i class="fa fa-youtube " aria-hidden="true "></i> YouTube</a></li>
+                                        <li><a href="# "><i class="fa fa-linkedin " aria-hidden="true "></i> Linkedin</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3 ">
+                                <div class="kilimanjaro_part ">
+                                    <h5>Tags Widget</h5>
+                                    <ul class=" kilimanjaro_widget ">
+                                        <li><a href="# ">Classy</a></li>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3 d-flex ">
+                                <div class="kilimanjaro_part ">
+                                    <h5>Latest News</h5>
+                                    {% for post in posts %}
+                                    <div class="kilimanjaro_blog_area ">
+                                        <div class="kilimanjaro_thumb ">
 
-    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                        </div>
+                                        <a href="/ ">{{post.title| truncatechars:25}}</a>
+                                        <p class="kilimanjaro_date ">21 Jan 2018</p>
+                                        <p>{{post.content| truncatechars:20}}</p>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3 ">
+                                <div class="kilimanjaro_part ">
+                                    <h5>Quick Contact</h5>
+                                    <div class="kilimanjaro_single_contact_info ">
+                                        <h5>Phone:</h5>
+                                        <p>+255 789 54 50 40 <br> +2255 766 90 94 00</p>
+                                    </div>
+                                    <div class="kilimanjaro_single_contact_info ">
+                                        <h5>Email:</h5>
+                                        <p>support@webblogoverflow.com <br> luckmoshy@gmail.com</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- Footer Bottom Area Start -->
+        <div class=" kilimanjaro_bottom_header_one section_padding_50 text-center ">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col-12 ">
+                        <p>© All Rights Reserved by <a href="https://web.facebook.com/mathew.matheo ">@mathewmatheo <i class="fa fa-love "></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </footer>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
+
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js "></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
+    <link <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js ">
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
+    <!------ Include the above in your HEAD tag ---------->
 
     {% block js %} {% endblock %}
 </body>
