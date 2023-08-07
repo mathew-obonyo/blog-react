@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title %} Login Page {% endblock %} {% block loginactive %} active {% endblock loginactive %} {% block css %} {% endblock %} {% block body %}
-<div class="container-sm mt-lg-4">
+<div class="container-sm mt-lg-4 mb-3">
 
     <form class="form-control" action="/login/" method="POST"> {% csrf_token %}
         <div class="m-0 bg-info text-capitalize align-items-center">

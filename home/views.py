@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
 
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
@@ -19,6 +20,9 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 def blogs(request):
     posts = BlogPost.objects.all()
     posts = BlogPost.objects.filter().order_by('-dateTime')
+    paginator = Paginator( posts , 2)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    posts = paginator.get_page(page_number)
     return render(request, "blog.html", {'posts':posts})
 
 def blogs_comments(request, slug):
@@ -74,6 +78,9 @@ def user_profile(request, myid):
 
 def Profile(request):
     return render(request, "profile.html")
+
+# def Home(request):
+#     return render(request, "Home.html")
 
 
 def edit_profile(request):
