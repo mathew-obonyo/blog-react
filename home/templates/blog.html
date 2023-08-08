@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block title %} Blogs {% endblock %} {% block homeactive %} active {% endblock homeactive %} {% block css %} {% endblock %} {% block body %}
 <div class="container mt-2 mb-1">
     <div class="row">
-        <div class="col-10">
+        <div class="col-10 w-100">
             {% for post in posts %}
-            <div class="container mb-5">
+            <div class="container-fluid mb-5 w-100">
                 <div class="card-header">
                     <h5 class="card-title">{{post.title}}</h5>
 
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <p class="card-text">{{post.content| truncatechars:150}}</p>
                 </div>
-                <div class="card-footer justify-content-evenly">
+                <div class="card-footer d-flex">
 
                     <a href="blog/{{post.slug}}" class="btn btn-primary">Read More {% if       user.is_superuser %}
                         <a href="delete_blog_post/{{post.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
@@ -23,20 +23,20 @@
             </div>
             {% endfor %}
         </div>
-        <div class="col-2 bg-light">
-            <div class="container">
-                <a class="nav-link text-decoration-none text-dark btn btn-primary {% block add_blogs_active %} {% endblock add_blogs_active %}" href="/add_blogs/">Add Blogs</a>
-                <h5 class="text-capitalize text-decoration-underline">recent post</h5>
-                {% for post in posts %}
-                <small>posted by {{post.author}}</small>
-                <a href="blog/{{post.slug}}">
-                    <img src="/media/{{post.image}}" class="card-img-top img-fluid" alt="post image">
-                    <h6 class="text-primary">
-                        {{post.slug}}</a>
-                </h6>
-                </a> {% endfor %}
-                <div>ads</div>
-            </div>
+        <div class="col-2 bg-light w-100">
+
+            <a class="nav-link text-decoration-none text-dark btn btn-primary {% block add_blogs_active %} {% endblock add_blogs_active %}" href="/add_blogs/">Add Post</a>
+            <h5 class="text-capitalize text-decoration-underline">recent post</h5>
+            {% for post in posts %}
+            <small>posted by {{post.author}}</small>
+            <a href="blog/{{post.slug}}">
+                <img src="/media/{{post.image}}" class="card-img-top img-fluid" alt="post image">
+                <h6 class="text-primary">
+                    {{post.slug}}</a>
+            </h6>
+            </a> {% endfor %}
+            <div>ads</div>
+
         </div>
     </div>
     {% for contact in posts %} {# Each "contact" is a Contact model object. #} {{ contact.full_name|upper }}{% endfor %}

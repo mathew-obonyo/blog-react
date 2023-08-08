@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title %} Blogs {% endblock %} {% block css %} .edit{ float: right; } {% endblock %} {% block body %} {% load humanize %}
-<div class="container w-75 my-4">
+<div class="container">
     <h2 class="blog-post-title">{{post.title}}</h2>
     <br>
     <div class="media">
@@ -17,9 +17,11 @@
         </div>
     </div>
     <br>
-    <img src="/media/{{post.image}}" alt="" height="250px" width="500px">
+    <img src="/media/{{post.image}}" class="card-img-top img-fluid" alt="image">
     <br>
-    <p>{{post.content}}.</p>
+    <div class="card-body">
+        <p>{{post.content}}.</p>
+    </div>
     <hr> {% if user.is_authenticated %}
     <div class="container">
         <h2>Add Comments </h2>

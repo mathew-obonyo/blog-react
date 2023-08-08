@@ -30,6 +30,12 @@
             border-radius: 50%;
         }
         
+        @media only screen and (max-width: 576px) {
+            .col-2 {
+                display: none;
+            }
+        }
+        
         {
             % endblock %
         }
@@ -51,11 +57,11 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-
+                            <a class="nav-link text-decoration-none {% block add_blogs_active %} {% endblock add_blogs_active %}" href="/add_blogs/">Add Post</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {% block profileactive %} {% endblock profileactive %}" href="/profile/">Profile</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/logout/">Logout</a>
@@ -78,7 +84,7 @@
                     <button href="/search/" class="btn btn-outline-secondary" type="submit">Search</button>
                 </form>
                 {% if user.profile.image %}
-                <img src="{{user.profile.image.url}}" alt="" class="avatar m-1" "> {% endif %}
+                <a class="nav-link {% block profileactive %} {% endblock profileactive %}" href="/profile/"><img src="{{user.profile.image.url}}" alt="" class="avatar m-1"></a> {% endif %}
             </div>
         </div>
     </nav>
@@ -101,8 +107,8 @@
                                     <ul class="kilimanjaro_social_links ">
                                         <li><a href="# "><i class="fa fa-facebook " aria-hidden="true "></i> Facebook</a></li>
                                         <li><a href="# "><i class="fa fa-twitter " aria-hidden="true "></i> Twitter</a></li>
-    
-                                            
+
+
                                     </ul>
                                 </div>
                             </div>
