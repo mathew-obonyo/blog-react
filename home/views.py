@@ -23,7 +23,7 @@ def blogs(request):
     paginator = Paginator( posts , 2)  # Show 25 contacts per page.
     page_number = request.GET.get("page")
     posts = paginator.get_page(page_number)
-    return render(request, "ZenBlog/index.html", {'posts':posts})
+    return render(request, "ZenPost/index.html", {'posts':posts})
 
 def blogs_comments(request, slug):
     post = BlogPost.objects.filter(slug=slug).first()
@@ -34,7 +34,7 @@ def blogs_comments(request, slug):
         blog_id =request.POST.get('blog_id','')
         comment = Comment(user = user, content = content, blog=post)
         comment.save()
-    return render(request, "ZenBlog/single-post.html", {'post':post, 'comments':comments})
+    return render(request, "ZenPost/single-post.html", {'post':post, 'comments':comments})
 
 def Delete_Blog_Post(request, slug):
     posts = BlogPost.objects.get(slug=slug)
@@ -80,10 +80,10 @@ def Profile(request):
     return render(request, "profile.html")
 
 def About(request):
-    return render(request, "ZenBlog/about.html")
+    return render(request, "ZenPost/about.html")
 
 def Contact(request):
-    return render(request, "ZenBlog/contact.html")
+    return render(request, "ZenPost/contact.html")
 
 def edit_profile(request):
     try:
