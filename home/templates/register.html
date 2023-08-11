@@ -1,39 +1,47 @@
-{% extends 'base.html' %} {% block title %} Register Page {% endblock %} {% block registeractive %} active {% endblock registeractive %} {% block css %} {% endblock %} {% block body %}
-<div class="container mt-4 mb-3">
-    <form class="form-control" action="/register/" method="POST"> {% csrf_token %}
-        <div class="header bg-info">
-            <h1 class="text-capitalize text-center">register to create account</h1>
+{% extends 'ZenBlog/baseindex.html' %} {% load static %} {% block title %} Register Page {% endblock %} {% block registeractive %} active {% endblock registeractive %}} {% block body %}
+<main id="main">
+    <section id="contact" class="contact mb-4">
+        <div class="container" data-aos="fade-up">
+            <div class="form mt-2">
+                <form class="form-control php-email-form" action="/register/" method="POST"> {% csrf_token %}
+                    <div class="header bg-info">
+                        <h1 class="text-capitalize text-center">register to create account</h1>
+                    </div>
+                    <div class="container mt-3">
+                        <div class="mb-3">
+
+                            <input type="text" placeholder="Enter Username" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="mb-3">
+
+                            <input type="text" placeholder="Enter First Name" class="form-control" id="first_name" name="first_name">
+                        </div>
+                        <div class="mb-3">
+
+                            <input type="text" placeholder=" Enter Last Name" class="form-control" id="last_name" name="last_name">
+                        </div>
+                        <div class="mb-3">
+
+                            <input type="email" placeholder="Enter Email address" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="mb-3">
+
+                            <input type="password" placeholder="Enter Password" class="form-control" id="password1" name="password1">
+                        </div>
+                        <div class="mb-3">
+
+                            <input type="password" placeholder="Confirm Password" class="form-control" id="password2" name="password2">
+                        </div>
+                        <button type="submit" class="btn btn-block btn-outline-primary">Sign up</button>
+                    </div>
+                    <div class="footer mt-3">
+                        Don't have an account?
+                        <a class="btn-sm m-2 btn-outline-info" href="/login/"><span class="text-danger">Login here</span></a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="container mt-5">
-            <div class="mb-3">
+    </section>
+</main>
 
-                <input type="text" placeholder="Enter Username" class="form-control" id="username" name="username">
-            </div>
-            <div class="mb-3">
-
-                <input type="text" placeholder="Enter First Name" class="form-control" id="first_name" name="first_name">
-            </div>
-            <div class="mb-3">
-
-                <input type="text" placeholder=" Enter Last Name" class="form-control" id="last_name" name="last_name">
-            </div>
-            <div class="mb-3">
-
-                <input type="email" placeholder="Enter Email address" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-3">
-
-                <input type="password" placeholder="Enter Password" class="form-control" id="password1" name="password1">
-            </div>
-            <div class="mb-3">
-
-                <input type="password" placeholder="Confirm Password" class="form-control" id="password2" name="password2">
-            </div>
-            <button type="submit" class="btn btn-block btn-outline-primary">Sign up</button>
-        </div>
-        <div class="footer mt-3">
-            Don't have an account?
-            <a class="btn-sm m-2 btn-outline-info" href="/login/">Login here</a>
-        </div>
-    </form>
-    </div {% endblock %}
+{% endblock %}

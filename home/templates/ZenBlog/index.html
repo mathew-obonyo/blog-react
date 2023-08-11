@@ -1,0 +1,124 @@
+{% extends 'ZenBlog/baseindex.html' %} {% block body %} {% load static %}
+<main id="main">
+
+    <!-- ======= Hero Slider Section ======= -->
+    <section id="hero-slider" class="hero-slider">
+        <div class="container-md" data-aos="fade-in">
+            <div class="row">
+                <div class="col-12">
+                    <div class="swiper sliderFeaturedPosts">
+                        <div class="swiper-wrapper">
+                            {% for post in posts %}
+                            <div class="swiper-slide">
+                                <a href="blog/{{post.slug}}" class="img-bg d-flex align-items-end img-fluid" style="background-image: url('/media/{{post.image}}');">
+                                    <div class="img-bg-inner">
+                                        <h2>{{post.title}}</h2>
+                                        <p>{{post.content| truncatechars:150}}.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="custom-swiper-button-next">
+                            <span class="bi-chevron-right"></span>
+                        </div>
+                        <div class="custom-swiper-button-prev">
+                            <span class="bi-chevron-left"></span>
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero Slider Section -->
+
+    <!-- ======= Post Grid Section ======= -->
+    <section id="posts" class="posts">
+        <div class="container" data-aos="fade-up">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    {% for post in posts %}
+                    <div class="post-entry-1 lg">
+                        <a href="blog/{{post.slug}}"><img src="" alt="" class="img-fluid"></a>
+                        <div class="post-meta"><span class="date">posted</span> <span class="mx-1">&bullet;</span> <span>{{post.dateTime}}</span></div>
+                        <h2><a href="blog/{{post.slug}}">{{post.title}}</a></h2>
+                        <p class="mb-4 d-block">{{post.content| truncatechars:150}}</p>
+
+                        <div class="d-flex align-items-center author">
+                            {% if user.profile.image %}
+                            <div class="photo"><img src="{{user.profile.image.url}}" alt="" class="img-fluid"></div>{% endif %}
+                            <div class="name">
+                                <h3 class="m-0 p-0">{{post.author}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row g-5">
+                        <div class="col-lg-8 border-start custom-border">
+                            {% for post in posts %}
+                            <div class="post-entry-1">
+
+                                <a href="blog/{{post.slug}}"><img src="/media/{{post.image}}" alt="" class="img-fluid"></a>
+                                <div class="post-meta"><span class="date">posted</span> <span class="mx-1">&bullet;</span> <span>{{post.dateTime}}</span></div>
+                                <h2><a href="blog/{{post.slug}}">{{post.content| truncatechars:200}}</a></h2>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                        <!-- Trending Section -->
+                        <div class="col-lg-4">
+
+                            <div class="trending">
+                                <h3>Trending</h3>
+                                <ul class="trending-post">
+                                    {% for post in posts %}
+                                    <li>
+                                        <a href="blog/{{post.slug}}">
+                                            <span class="number">1</span>
+                                            <h3>{{post.content| truncatechars:110}}</h3>
+                                            <span class="author">{{post.author}}</span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- End Trending Section -->
+                    </div>
+                </div>
+
+
+                <div class="pagination">
+                    <span class="step-links">
+                    {% if posts.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ posts.previous_page_number }}"><<previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                    </span> {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">next>></a>
+                    <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a> {% endif %}
+                    </span>
+                </div>
+            </div>
+            <!-- End .row -->
+        </div>
+
+
+    </section>
+    <!-- End Post Grid Section -->
+
+</main>
+
+<!-- End #main -->
+{% endblock %}
+<!-- ======= Footer ======= -->

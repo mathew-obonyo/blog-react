@@ -1,17 +1,23 @@
-{% extends 'base.html' %} {% block title %} Profile {% endblock %} {% block add_blogs_active %} active {% endblock add_blogs_active %} {% block css %} {% endblock %} {% block body %}
-<div class="container mt-2">
-    <div class="head bg-info">
-        <header class="text-capitalize text-center color-light">
-            <h2>Add post</h2>
-        </header>
-    </div>
-    <form class="form-control" action="/add_blogs/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
-        <div class="container align-center ">
-            {{ form.as_p }}
-            <button class="btn btn-block btn-primary">Add Post</button>
+{% extends 'ZenBlog/baseindex.html' %} {% load static %} {% block title %} Profile {% endblock %} {% block add_blogs_active %} active {% endblock add_blogs_active %} {% block css %} {% endblock %} {% block body %}
+<main id="main">
+    <section id="contact" class="contact mb-4">
+        <div class="container" data-aos="fade-up">
+            <div class="form ">
+                <div class="head bg-info">
+                    <header class="text-capitalize text-center color-light">
+                        <h2>Add post</h2>
+                    </header>
+                </div>
+                <form class="form-control" action="/add_blogs/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
+                    <div class="container align-center ">
+                        <span class="text-bg-success">Note: slug is the subtitle</span> {{ form.as_p }}
+                        <button class="btn btn-primary">Add Post</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-</div>
+    </section>
+</main>
 {% endblock %} {% block js %} {% if alert %}
 <script>
     if (alert) {
